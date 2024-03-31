@@ -1,6 +1,5 @@
 package sweet.wilderness.entity.ai.goal;
 
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.TargetPredicate;
 import net.minecraft.entity.ai.goal.Goal;
@@ -13,7 +12,6 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import sweet.wilderness.entity.entities.worm.WormEntity;
 import sweet.wilderness.huh.EntityUtils;
-import sweet.wilderness.huh.Timer;
 
 import java.util.EnumSet;
 import java.util.List;
@@ -40,25 +38,29 @@ public class FleeAndDigGoal extends Goal {
     public boolean canStart() {
         List<PlayerEntity> playersInRangeList =
                 world.getEntitiesByClass(PlayerEntity.class, mob.getBoundingBox().expand(8, 3, 8),
-                EntityPredicates.VALID_ENTITY);
+                        EntityPredicates.VALID_ENTITY);
 
-        if (!playersInRangeList.isEmpty()){
-            PlayerEntity closestPlayer = world.getClosestEntity(playersInRangeList, TargetPredicate.DEFAULT,
-                    mob, mob.getX(), mob.getY(), mob.getZ());
-            if (closestPlayer != null){
-                double distance = mob.getPos().distanceTo(closestPlayer.getPos());
-                if (distance < 4){
-                    if (!closestPlayer.isSneaking() ||
-                            closestPlayer.getVelocity().getX() > 3 || closestPlayer.getVelocity().getZ() > 3) {
-                        if (!started) {
-                            GetFleePos(mob, closestPlayer);
-                            path = mob.getNavigation().findPathTo(targetPos, 0);
-                        }
+        if (playersInRangeList.isEmpty()) return false;
 
-                        return targetPos !=  null && path != null;
-                    }
-                }
+        PlayerEntity closestPlayer = world.getClosestEntity(playersInRangeList, TargetPredicate.DEFAULT,
+                mob, mob.getX(), mob.getY(), mob.getZ());
+
+        if (closestPlayer == null) return false;
+
+        double distance = mob.getPos().distanceTo(closestPlayer.getPos());
+
+        if (distance > 4) return false;
+
+        if (!closestPlayer.isSneaking()
+            || closestPlayer.getVelocity().getX() > 3
+            || closestPlayer.getVelocity().getZ() > 3) {
+
+            if (!started) {
+                GetFleePos(mob, closestPlayer);
+                path = mob.getNavigation().findPathTo(targetPos, 0);
             }
+
+            return targetPos != null && path != null;
         }
 
         return false;
@@ -105,9 +107,11 @@ public class FleeAndDigGoal extends Goal {
     public void tick() {
         super.tick();
 
-        if (--this.ticksUntilSomething == 0L) {
-            started = false;
-            EntityUtils.RemoveEntity(world, mob);
-        }
+        if (--this.ticksUntilSomething != 0L)
+            return;
+
+        started = false;
+        EntityUtils.RemoveEntity(world, mob);
+
     }
 }

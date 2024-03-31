@@ -13,9 +13,9 @@ public class TortoiseSwimGoal
     }
 
     public boolean canStart() {
-        if (this.mob.isHiding()){
+        if (this.mob.isHiding())
             return false;
-        }
+
 
         return super.canStart();
     }

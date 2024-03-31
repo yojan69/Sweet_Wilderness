@@ -42,9 +42,9 @@ public class TortoiseEggBlock extends Block {
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        if (state.get(EGGS) > 1) {
+        if (state.get(EGGS) > 1)
             return LARGE_SHAPE;
-        }
+
         return SMALL_SHAPE;
     }
 
@@ -52,43 +52,46 @@ public class TortoiseEggBlock extends Block {
     @Nullable
     public BlockState getPlacementState(ItemPlacementContext ctx) {
         BlockState blockState = ctx.getWorld().getBlockState(ctx.getBlockPos());
-        if (blockState.isOf(this)) {
+        if (blockState.isOf(this))
             return blockState.with(EGGS, Math.min(3, blockState.get(EGGS) + 1));
-        }
+
         return super.getPlacementState(ctx);
     }
 
     @Override
     public void onSteppedOn(World world, BlockPos pos, BlockState state, Entity entity) {
-        if (!entity.bypassesSteppingEffects()) {
+        if (!entity.bypassesSteppingEffects())
             this.tryBreakEgg(world, state, pos, entity, 100);
-        }
+
         super.onSteppedOn(world, pos, state, entity);
     }
 
     @Override
     public void onLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
-        if (!(entity instanceof ZombieEntity)) {
+        if (!(entity instanceof ZombieEntity))
             this.tryBreakEgg(world, state, pos, entity, 3);
-        }
+
         super.onLandedUpon(world, state, pos, entity, fallDistance);
     }
 
     private void tryBreakEgg(World world, BlockState state, BlockPos pos, Entity entity, int inverseChance) {
-        if (!this.breaksEgg(world, entity)) {
+        if (!this.breaksEgg(world, entity))
             return;
-        }
-        if (!world.isClient && world.random.nextInt(inverseChance) == 0 && state.isOf(ModBlocks.TORTOISE_EGG)) {
+
+        if (!world.isClient
+            && world.random.nextInt(inverseChance) == 0
+            && state.isOf(ModBlocks.TORTOISE_EGG))
             this.breakEgg(world, pos, state);
-        }
+
     }
 
     private void breakEgg(World world, BlockPos pos, BlockState state) {
         world.playSound(null, pos, SoundEvents.ENTITY_TURTLE_EGG_BREAK, SoundCategory.BLOCKS, 0.7f, 0.9f + world.random.nextFloat() * 0.2f);
+
         int i = state.get(EGGS);
-        if (i <= 1) {
+        if (i <= 1)
             world.breakBlock(pos, false);
-        } else {
+        else {
             world.setBlockState(pos, state.with(EGGS, i - 1), Block.NOTIFY_LISTENERS);
             world.emitGameEvent(GameEvent.BLOCK_DESTROY, pos, GameEvent.Emitter.of(state));
             world.syncWorldEvent(WorldEvents.BLOCK_BROKEN, pos, Block.getRawIdFromState(state));
@@ -97,34 +100,40 @@ public class TortoiseEggBlock extends Block {
 
     @Override
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        if (this.shouldHatchProgress(world) && TurtleEggBlock.isSandBelow(world, pos)) {
-            int i = state.get(HATCH);
-            if (i < 2) {
-                world.playSound(null, pos, SoundEvents.ENTITY_TURTLE_EGG_CRACK, SoundCategory.BLOCKS, 0.7f, 0.9f + random.nextFloat() * 0.2f);
-                world.setBlockState(pos, state.with(HATCH, i + 1), Block.NOTIFY_LISTENERS);
-                world.emitGameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Emitter.of(state));
-            } else {
-                world.playSound(null, pos, SoundEvents.ENTITY_TURTLE_EGG_HATCH, SoundCategory.BLOCKS, 0.7f, 0.9f + random.nextFloat() * 0.2f);
-                world.removeBlock(pos, false);
-                world.emitGameEvent(GameEvent.BLOCK_DESTROY, pos, GameEvent.Emitter.of(state));
-                for (int j = 0; j < state.get(EGGS); ++j) {
-                    world.syncWorldEvent(WorldEvents.BLOCK_BROKEN, pos, Block.getRawIdFromState(state));
-                    TurtleEntity turtleEntity = EntityType.TURTLE.create(world);
-                    if (turtleEntity == null) continue;
-                    turtleEntity.setBreedingAge(-24000);
-                    turtleEntity.setHomePos(pos);
-                    turtleEntity.refreshPositionAndAngles((double)pos.getX() + 0.3 + (double)j * 0.2, pos.getY(), (double)pos.getZ() + 0.3, 0.0f, 0.0f);
-                    world.spawnEntity(turtleEntity);
-                }
+        if (!this.shouldHatchProgress(world) || !TurtleEggBlock.isSandBelow(world, pos))
+            return;
+
+        int i = state.get(HATCH);
+
+        if (i < 2) {
+            world.playSound(null, pos, SoundEvents.ENTITY_TURTLE_EGG_CRACK, SoundCategory.BLOCKS, 0.7f, 0.9f + random.nextFloat() * 0.2f);
+            world.setBlockState(pos, state.with(HATCH, i + 1), Block.NOTIFY_LISTENERS);
+            world.emitGameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Emitter.of(state));
+        }
+        else {
+            world.playSound(null, pos, SoundEvents.ENTITY_TURTLE_EGG_HATCH, SoundCategory.BLOCKS, 0.7f, 0.9f + random.nextFloat() * 0.2f);
+            world.removeBlock(pos, false);
+            world.emitGameEvent(GameEvent.BLOCK_DESTROY, pos, GameEvent.Emitter.of(state));
+
+            for (int j = 0; j < state.get(EGGS); ++j) {
+                world.syncWorldEvent(WorldEvents.BLOCK_BROKEN, pos, Block.getRawIdFromState(state));
+                TurtleEntity turtleEntity = EntityType.TURTLE.create(world);
+                if (turtleEntity == null) continue;
+
+                turtleEntity.setBreedingAge(-24000);
+                turtleEntity.setHomePos(pos);
+                turtleEntity.refreshPositionAndAngles((double) pos.getX() + 0.3 + (double) j * 0.2, pos.getY(), (double) pos.getZ() + 0.3, 0.0f, 0.0f);
+                world.spawnEntity(turtleEntity);
             }
         }
+
     }
 
     private boolean shouldHatchProgress(World world) {
         float f = world.getSkyAngle(1.0f);
-        if ((double)f < 0.69 && (double)f > 0.65) {
+        if ((double)f < 0.69 && (double)f > 0.65)
             return true;
-        }
+
         return world.random.nextInt(500) == 0;
     }
 
@@ -149,11 +158,12 @@ public class TortoiseEggBlock extends Block {
     }
 
     private boolean breaksEgg(World world, Entity entity) {
-        if (entity instanceof TortoiseEntity || entity instanceof BatEntity) {
+        if (entity instanceof TortoiseEntity || entity instanceof BatEntity)
             return false;
-        }
+
         if (entity instanceof LivingEntity) {
-            return entity instanceof PlayerEntity || world.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING);
+            return entity instanceof PlayerEntity
+                   || world.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING);
         }
 
         return false;

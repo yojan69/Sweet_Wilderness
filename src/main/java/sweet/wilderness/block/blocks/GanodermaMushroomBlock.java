@@ -29,12 +29,11 @@ public class GanodermaMushroomBlock extends Block {
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         Vec3d vec3d = state.getModelOffset(world, pos);
 
-        if (state.get(FACING) == Direction.NORTH || state.get(FACING) == Direction.SOUTH){
+        if (state.get(FACING) == Direction.NORTH || state.get(FACING) == Direction.SOUTH)
             return NORTH_WEST_SHAPE.offset(vec3d.x, vec3d.y, vec3d.z);
-        }
-        else{
+        else
             return SOUTH_EAST_SHAPE.offset(vec3d.x, vec3d.y, vec3d.z);
-        }
+
     }
 
     @Nullable

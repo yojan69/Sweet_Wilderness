@@ -9,9 +9,9 @@ public class Timer implements ServerTickEvents.EndTick{
 
     @Override
     public void onEndTick(MinecraftServer server) {
-        if (--this.ticksUntilSomething == 0L) {
+        if (--this.ticksUntilSomething == 0L)
             code.run();
-        }
+
     }
 
     public void SetTimer(long ticksUntilSomething, Runnable code){
