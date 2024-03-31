@@ -1,0 +1,72 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.unknown",
+				"texture_width": 64,
+				"texture_height": 64,
+				"visible_bounds_width": 2,
+				"visible_bounds_height": 2.5,
+				"visible_bounds_offset": [0, 0.75, 0]
+			},
+			"bones": [
+				{
+					"name": "Chimpace",
+					"pivot": [-1, -1, 0]
+				},
+				{
+					"name": "Torso",
+					"parent": "Chimpace",
+					"pivot": [-1, 7, 0],
+					"cubes": [
+						{"origin": [-4, 6, -0.5], "size": [7, 9, 5], "uv": [0, 0]}
+					]
+				},
+				{
+					"name": "Head",
+					"parent": "Torso",
+					"pivot": [-0.5, 15.875, 1.625],
+					"cubes": [
+						{"origin": [-4, 15, -1], "size": [7, 6, 6], "uv": [24, 0]},
+						{"origin": [-3, 15, -3], "size": [5, 3, 3], "uv": [20, 14]},
+						{"origin": [3, 17, 1], "size": [2, 3, 0], "uv": [0, 35]},
+						{"origin": [-6, 17, 1], "size": [2, 3, 0], "uv": [24, 26]}
+					]
+				},
+				{
+					"name": "right_arm",
+					"parent": "Chimpace",
+					"pivot": [3, 14.5, 2.5],
+					"cubes": [
+						{"origin": [3, 6, 1], "size": [2, 9, 3], "uv": [10, 14]}
+					]
+				},
+				{
+					"name": "left_arm",
+					"parent": "Chimpace",
+					"pivot": [-4, 14.5, 2.5],
+					"cubes": [
+						{"origin": [-6, 6, 1], "size": [2, 9, 3], "uv": [0, 14]}
+					]
+				},
+				{
+					"name": "right_leg",
+					"parent": "Chimpace",
+					"pivot": [1.5, 6, 2],
+					"cubes": [
+						{"origin": [0, 0, 0.5], "size": [3, 6, 3], "uv": [12, 26]}
+					]
+				},
+				{
+					"name": "left_leg",
+					"parent": "Chimpace",
+					"pivot": [-2.5, 6, 2],
+					"cubes": [
+						{"origin": [-4, 0, 0.5], "size": [3, 6, 3], "uv": [0, 26]}
+					]
+				}
+			]
+		}
+	]
+}

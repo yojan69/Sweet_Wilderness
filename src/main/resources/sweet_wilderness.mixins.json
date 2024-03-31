@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "sweet.wilderness.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "BucketableMixin",
+    "BucketItemMixin",
+    "FlowerPotMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+	}
+}

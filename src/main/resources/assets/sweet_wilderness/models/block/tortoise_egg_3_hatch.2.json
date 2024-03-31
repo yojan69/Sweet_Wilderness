@@ -1,0 +1,49 @@
+{
+	"credit": "Made with Blockbench",
+	"texture_size": [32, 32],
+	"textures": {
+		"0": "sweet_wilderness:block/tortoise_egg_hatch.2",
+		"particle": "sweet_wilderness:block/tortoise_egg_hatch.2"
+	},
+	"elements": [
+		{
+			"name": "Tiny_egg",
+			"from": [8, 0, 4],
+			"to": [10, 4, 6],
+			"faces": {
+				"north": {"uv": [0, 7, 1, 9], "texture": "#0"},
+				"east": {"uv": [1, 7, 2, 9], "texture": "#0"},
+				"south": {"uv": [2, 7, 3, 9], "texture": "#0"},
+				"west": {"uv": [3, 7, 4, 9], "texture": "#0"},
+				"up": {"uv": [8, 5, 7, 4], "texture": "#0"},
+				"down": {"uv": [8, 5, 7, 6], "texture": "#0"}
+			}
+		},
+		{
+			"name": "Middle_egg",
+			"from": [9, 0, 7],
+			"to": [12, 5, 10],
+			"faces": {
+				"north": {"uv": [4, 4, 5.5, 6.5], "texture": "#0"},
+				"east": {"uv": [5.5, 4, 7, 6.5], "texture": "#0"},
+				"south": {"uv": [6, 0, 7.5, 2.5], "texture": "#0"},
+				"west": {"uv": [4, 6.5, 5.5, 9], "texture": "#0"},
+				"up": {"uv": [7.5, 4, 6, 2.5], "texture": "#0"},
+				"down": {"uv": [7, 6.5, 5.5, 8], "texture": "#0"}
+			}
+		},
+		{
+			"name": "Big_egg",
+			"from": [4, 0, 7],
+			"to": [8, 7, 11],
+			"faces": {
+				"north": {"uv": [0, 0, 2, 3.5], "texture": "#0"},
+				"east": {"uv": [2, 0, 4, 3.5], "texture": "#0"},
+				"south": {"uv": [0, 3.5, 2, 7], "texture": "#0"},
+				"west": {"uv": [2, 3.5, 4, 7], "texture": "#0"},
+				"up": {"uv": [6, 2, 4, 0], "texture": "#0"},
+				"down": {"uv": [6, 2, 4, 4], "texture": "#0"}
+			}
+		}
+	]
+}

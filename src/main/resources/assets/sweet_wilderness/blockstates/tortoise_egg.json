@@ -1,0 +1,49 @@
+{
+  "variants": {
+    "eggs=1,hatch=0": [
+      {
+        "model": "sweet_wilderness:block/tortoise_egg_1_hatch.0"
+      }
+    ],
+    "eggs=1,hatch=1": [
+      {
+        "model": "sweet_wilderness:block/tortoise_egg_1_hatch.1"
+      }
+    ],
+    "eggs=1,hatch=2": [
+      {
+        "model": "sweet_wilderness:block/tortoise_egg_1_hatch.2"
+      }
+    ],
+    "eggs=2,hatch=0": [
+      {
+        "model": "sweet_wilderness:block/tortoise_egg_2_hatch.0"
+      }
+    ],
+    "eggs=2,hatch=1": [
+      {
+        "model": "sweet_wilderness:block/tortoise_egg_2_hatch.1"
+      }
+    ],
+    "eggs=2,hatch=2": [
+      {
+        "model": "sweet_wilderness:block/tortoise_egg_2_hatch.2"
+      }
+    ],
+    "eggs=3,hatch=0": [
+      {
+        "model": "sweet_wilderness:block/tortoise_egg_3_hatch.0"
+      }
+    ],
+    "eggs=3,hatch=1": [
+      {
+        "model": "sweet_wilderness:block/tortoise_egg_3_hatch.1"
+      }
+    ],
+    "eggs=3,hatch=2": [
+      {
+        "model": "sweet_wilderness:block/tortoise_egg_3_hatch.2"
+      }
+    ]
+  }
+}

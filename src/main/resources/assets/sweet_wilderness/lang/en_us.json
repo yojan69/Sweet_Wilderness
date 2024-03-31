@@ -1,0 +1,25 @@
+{
+  "block.sweet_wilderness.dandelion": "Dandelion",
+  "block.sweet_wilderness.ganoderma_mushroom": "Ganoderma Mushroom",
+  "block.sweet_wilderness.cat_tail": "Cat Tail",
+  "block.sweet_wilderness.tortoise_egg": "Tortoise Egg",
+
+  "entity.sweet_wilderness.grizzlybear" : "Grizzly Bear",
+  "entity.sweet_wilderness.worm" : "Worm",
+  "entity.sweet_wilderness.crow" : "Crow",
+  "entity.sweet_wilderness.capybara" : "Capybara",
+  "entity.sweet_wilderness.tortoise" : "Tortoise",
+  "entity.sweet_wilderness.chimpanzee" : "Chimpanzee",
+  "entity.sweet_wilderness.crab" : "Crab",
+
+  "item.sweet_wilderness.tortoise_shell": "Tortoise Shell",
+  "item.sweet_wilderness.worm_on_a_pot": "Worm on a Pot",
+  "item.sweet_wilderness.crab_bucket": "Crab Bucket",
+
+  "item.sweet_wilderness.honey_and_salmon_stew": "Honey and Salmon Stew",
+
+  "item.sweet_wilderness.music_disc_ecosystem": "Music Disc",
+  "item.sweet_wilderness.music_disc_rooted_swamp": "Music Disc",
+  "item.sweet_wilderness.music_disc_ecosystem.desc": "Ecosystem - Shaunt",
+  "item.sweet_wilderness.music_disc_rooted_swamp.desc": "Rooted Swamp - Shaunt"
+}

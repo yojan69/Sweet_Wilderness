@@ -1,0 +1,40 @@
+{
+	"schemaVersion": 1,
+	"id": "sweet_wildness",
+	"version": "${version}",
+	"name": "Sweet Wildness",
+	"description": "WIP",
+	"authors": [
+		"Shaunt",
+		"yojan"
+	],
+	"contact": {
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/sweet_wildness/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"client": [
+			"sweet.wilderness.SweetWildernessClient"
+		],
+		"main": [
+          "sweet.wilderness.SweetWilderness"
+		],
+		"fabric-datagen": [
+			"sweet.wilderness.SweetWildernessDataGenerator"
+		]
+	},
+	"mixins": [
+		"sweet_wilderness.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.15.6",
+		"minecraft": "~1.20.4",
+		"java": ">=17",
+		"geckolib": ">=4.4.2",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
