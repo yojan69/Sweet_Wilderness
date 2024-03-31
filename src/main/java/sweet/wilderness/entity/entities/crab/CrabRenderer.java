@@ -13,9 +13,9 @@ public class CrabRenderer extends GeoEntityRenderer<CrabEntity> {
     @Override
     public void render(CrabEntity entity, float entityYaw, float partialTick,
                        MatrixStack poseStack, VertexConsumerProvider bufferSource, int packedLight) {
-        if (entity.isBaby()){
+        if (entity.isBaby())
             poseStack.scale(.4f, .4f, .4f);
-        }
+
 
         super.render(entity, entityYaw, partialTick, poseStack, bufferSource, packedLight);
     }

@@ -6,7 +6,6 @@ import net.minecraft.data.client.BlockStateModelGenerator;
 import net.minecraft.data.client.ItemModelGenerator;
 import net.minecraft.data.client.ModelIds;
 import net.minecraft.data.client.Models;
-import net.minecraft.item.SpawnEggItem;
 import net.minecraft.util.Identifier;
 import sweet.wilderness.SweetWilderness;
 import sweet.wilderness.block.ModBlocks;

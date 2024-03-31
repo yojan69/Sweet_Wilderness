@@ -1,7 +1,6 @@
 package sweet.wilderness.entity.ai.goal;
 
 import net.minecraft.entity.ai.goal.WanderAroundFarGoal;
-import net.minecraft.entity.mob.PathAwareEntity;
 import sweet.wilderness.entity.entities.tortoise.TortoiseEntity;
 
 public class TortoiseWanderAroundFarGoal

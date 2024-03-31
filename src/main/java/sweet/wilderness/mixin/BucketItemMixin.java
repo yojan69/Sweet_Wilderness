@@ -32,18 +32,20 @@ public abstract class BucketItemMixin {
             slice = @Slice(from = @At(value = "FIELD", target = "Lnet/minecraft/fluid/Fluids;EMPTY:Lnet/minecraft/fluid/Fluid;")),
     at = @At(value = "FIELD", target = "Lnet/minecraft/fluid/Fluids;EMPTY:Lnet/minecraft/fluid/Fluid;", ordinal = 1), cancellable = true)
     private void hehe(World world, PlayerEntity user, Hand hand, CallbackInfoReturnable<TypedActionResult<ItemStack>> cir,
-                      @Local BlockHitResult blockHitResult){
-        if ((user.getStackInHand(hand)).getItem() == ModItems.CRAB_BUCKET){
-            BlockPos blockPos = world.getBlockState(blockHitResult.getBlockPos())
-                    .getBlock() instanceof FluidFillable
-                    && fluid == Fluids.WATER
-                    ? blockHitResult.getBlockPos()
-                    : blockHitResult.getBlockPos().offset(blockHitResult.getSide());
+                      @Local BlockHitResult blockHitResult) {
 
-            onEmptied(user, world, user.getStackInHand(hand), blockPos);
+        if ((user.getStackInHand(hand)).getItem() != ModItems.CRAB_BUCKET) return;
 
-            cir.setReturnValue(TypedActionResult.success(BucketItem.getEmptiedStack(user.getStackInHand(hand), user), world.isClient()));
-            cir.cancel();
-        }
+        BlockPos blockPos = world.getBlockState(blockHitResult.getBlockPos())
+                .getBlock() instanceof FluidFillable
+                && fluid == Fluids.WATER
+                ? blockHitResult.getBlockPos()
+                : blockHitResult.getBlockPos().offset(blockHitResult.getSide());
+
+        onEmptied(user, world, user.getStackInHand(hand), blockPos);
+
+        cir.setReturnValue(TypedActionResult.success(BucketItem.getEmptiedStack(user.getStackInHand(hand), user), world.isClient()));
+        cir.cancel();
+
     }
 }

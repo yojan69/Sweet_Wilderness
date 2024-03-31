@@ -18,7 +18,6 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
-import net.minecraft.world.explosion.Explosion;
 import org.jetbrains.annotations.Nullable;
 import sweet.wilderness.block.ModBlocks;
 
@@ -51,12 +50,9 @@ public class CatTailBlock extends Block {
         BlockPos blockPosUp = pos.up(1);
         BlockState blockState = world.getBlockState(blockPos);
         BlockState blockStateUp = world.getBlockState(blockPosUp);
-        if (blockState.isIn(BlockTags.DIRT) && blockStateUp.isOf(Blocks.AIR)) {
-            return true;
-        }
-        else{
-            return false;
-        }
+
+        return (blockState.isIn(BlockTags.DIRT) && blockStateUp.isOf(Blocks.AIR));
+
     }
 
     @Override
